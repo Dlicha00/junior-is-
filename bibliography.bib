@@ -1,36 +1,66 @@
-% Here is an example of how to create a bibliography entry for an article using
-% BibTeX. Generally you won't have to write these out yourself, because they are
-% provided by most web sites that allow you to export citations. The string
-% "clrsAlgorithms" is a citation key, and if you were citing the source in a
-% document you would use \cite{clrsAlgorithms}.
-@book{clrsAlgorithms,
-author = {Cormen, Thomas H. and Leiserson, Charles E. and Rivest, Ronald L. and Stein, Clifford},
-title = {Introduction to Algorithms, Third Edition},
-year = {2009},
-isbn = {0262033844},
-publisher = {The MIT Press},
-edition = {3rd},
-annote  = {This is a popular algorithms textbook which is well-cited. In particular, Part VI on graph algorithms will be of interest. Chapter 26 discusses flow networks and introduces commonly used notation. It formally describes the problem of obtaining a maximum flow and its equivalence to obtaining a minimum cut. The classical method of Ford and Fulkerson's algorithm for finding a maximum flow is described, and it includes several examples. Additional methods for obtaining a maximum flow, including the push-relabel method, are also described. The chapter notes include additional references to specific articles which may be helpful, such as those of historical interest (the article in which an algorithm was originally proposed) as well as state-of-the-art improvements (more recent articles to improve the approach).}
+@article{Ettredge2001WebDesign,
+  author = {Ettredge, Michael and Richardson, Vernon J. and Scholz, Susan},
+  title = {A Web Site Design Model For Financial Information},
+  journal = {Communications of the ACM},
+  year = {2001},
+  volume = {44},
+  number = {11},
+  pages = {51--55},
+  publisher = {ACM},
+  doi = {10.1145/384150.384161},
+  url = {https://dl.acm.org/doi/10.1145/384150.384161},
+  note = {Accessed: 2026-01-27},
+  annote = {Ettredge, Richardson, and Scholz investigate how financial websites should be structured to help investors actually make decisions. They distinguish between hard data such as stock prices and soft information like investor relations updates. This distinction is exactly what I will be dealing with in my project. My 13-metric system combines hard numbers like Revenue Growth with subjective scores like Moat or Leadership, so their design model gives me a way to organize these differently on the screen. Although the paper is older, the core design principles for financial data haven't changed much. I plan to use their ideas to design my Ranked Table so users can see the important metrics without getting overwhelmed by the subjective ones.}
 }
 
-@inproceedings{10.1145/3704637.3734789,
-author = {Hug, Sarah and McKay, Mark},
-title = {Problematizing {AI} Literacy Access - Understanding Student {AI} Literacy from Student Voices},
-year = {2025},
-isbn = {9798400706264},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3704637.3734789},
-doi = {10.1145/3704637.3734789},
-abstract = {Domestic undergraduate computer science students formally learn about machine learning and artificial intelligence in upper level undergraduate computing programs, yet they must navigate the lure of ChatGPT and other generative Artificial Intelligence tools that have been found to be somewhat accurate at completing early coding assignments. As AI tools proliferate, messaging about their use in academic settings are varied, and access to AI literacy is unknown. Through an investigation of interviews with Pell grant eligible college students at open access colleges, we address the following research questions: How do low-income undergraduate interview participants describe their uses of and attitudes regarding generative AI tool use for academic purposes? and What elements of AI digital literacy appear to be accessible to interview participants, based on their descriptive statements?},
-booktitle = {Proceedings of the 2025 Conference on Research on Equitable and Sustained Participation in Engineering, Computing, and Technology},
-pages = {339–342},
-numpages = {4},
-keywords = {AI tool use, Pell-Grant eligible students, digital divide, generative AI literacy, qualitative interview},
-location = {Newark, NJ, USA},
-series = {RESPECT 2025}
+@inproceedings{Dong2024FinancialViz,
+  author = {Dong, Xiaodan and Huang, Weidong and Wang, Jitong},
+  title = {Financial Big Data Visualization: A Machine Learning Perspective},
+  booktitle = {Proceedings of the 17th International Symposium on Visual Information Communication and Interaction (VINCI '24)},
+  year = {2024},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  doi = {10.1145/3678698.3678702},
+  url = {https://dl.acm.org/doi/10.1145/3678698.3678702},
+  note = {Accessed: 2026-01-27},
+  annote = {Visualizing data for over 500 companies is a major challenge for my web app. Dong, Huang, and Wang propose a machine learning approach to solving this Big Data visualization problem. They break down the process into three stages: before, during, and after the model runs. This is useful for me because I need to show a simple Score out of 130, but also allow users to look into the details if they want . I will use their "post-model" visualization strategies to decide how to display the summary statistics and trends for the top 10 stocks in my ranked list. This ensures that the dashboard remains readable even when processing the full S\&P 500 dataset.}
 }
 
-  
+@article{Schumaker2009Textual,
+  author = {Schumaker, Robert P. and Chen, Hsinchun},
+  title = {Textual Analysis of Stock Market Prediction Using Breaking Financial News: The AZFin Text System},
+  journal = {ACM Transactions on Information Systems},
+  volume = {27},
+  number = {2},
+  year = {2009},
+  pages = {12:1--12:19},
+  publisher = {ACM},
+  doi = {10.1145/1462198.1462204},
+  url = {https://dl.acm.org/doi/10.1145/1462198.1462204},
+  note = {Accessed: 2026-01-27},
+  annote = {Schumaker and Chen present a system for automating the analysis of financial news to predict stock prices. While my project will focus largely on numerical ratios, I also have to score qualitative metrics like Leadership and Culture. This paper is essential because it demonstrates how to treat unstructured text as data. The authors use a machine learning approach to tag and classify financial terms, which is the same logic I will need to implement if I want my web app to automatically score the News/Catalyst portion of my dashboard.}
+}
 
+@techreport{SPGlobal2016Methodology,
+  author = {{S\&P Dow Jones Indices}},
+  title = {S\&P U.S. Indices Methodology},
+  institution = {McGraw Hill Financial},
+  year = {2016},
+  month = {February},
+  url = {https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-us-indices.pdf},
+  note = {Accessed: 2026-01-27},
+  annote = {This official methodology document from S\&P Dow Jones Indices outlines the eligibility criteria and maintenance rules for the S\&P 500 index. It defines the universe of stocks my application will rank. Understanding the divisor-based weighting and float-adjustment ensures that my app's data filtering logic remains consistent with industry standards.}
+}
+
+@inproceedings{McKinney2010Pandas,
+  author = {McKinney, Wes},
+  title = {Data Structures for Statistical Computing in Python},
+  booktitle = {Proceedings of the 9th Python in Science Conference},
+  pages = {56--61},
+  year = {2010},
+  editor = {St\'efan van der Walt and Jarrod Millman},
+  url = {https://cv.wesmckinney.com/pdf/scipy-2010-pandas.pdf},
+  note = {Accessed: 2026-01-27},
+  annote = {This paper introduces "pandas," the fundamental Python library I will be needing to build my application. McKinney explains the design of the DataFrame, which is the exact data structure I will need to store and rank the 500 stocks. I cited this because my project is heavily dependent on this tool for calculating the 13 metrics efficiently. }
+}
 
