@@ -39,10 +39,20 @@ A major challenge in this project is automating the qualitative scores. While ma
 \section*{Appendix}
 A concise list of features / user stories in the order in which they will be built. A few examples are below to demonstrate the expected scope and level of granularity; you will have more features than this.
 \begin{itemize}
-	\item Default picture display on web application.
-	\item On a button-click, user can separate the image into foreground and background.
-	\item User can select a picture from their desktop.
-	\item Selected picture displays on the web application.
+	\item \textbf{Initial Setup:} Set up the Python environment and install pandas and the web framework.
+    \item \textbf{Stock List Download:} Create a script to grab all current S\&P 500 ticker symbols.
+    \item \textbf{Financial Data Ingestion:} Build functions to download raw data (like P/E ratios and revenue) for the 500 stocks.
+    \item \textbf{S\&P Standards Filter:} Add logic to filter stocks based on official S\&P eligibility rules.
+    \item \textbf{Data Storage:} Create a pandas DataFrame to hold and organize all stock metrics in one place.
+    \item \textbf{Numerical Scoring:} Write the code to turn financial ratios into a score from 1 to 10.
+    \item \textbf{AI Qualitative Analysis:} Connect an AI API to read news headlines and score the "soft" metrics.
+    \item \textbf{Ranking Engine:} Create a script that adds up all 13 metrics and sorts the stocks from highest to lowest.
+    \item \textbf{Data API:} Set up a backend that sends the final ranked data to the web interface.
+    \item \textbf{Web Dashboard:} Build the main table where users can see the top-ranked stocks.
+    \item \textbf{Detailed View:} Add a feature so users can click a stock to see exactly how it got its score.
+
+    \item \textbf{Stretch Goal:} Add a live search bar to find any stock in the list instantly.
+    \item \textbf{Stretch Goal:} Allow users to save their favorite stocks to a personal watchlist.
 \end{itemize}
 
 
