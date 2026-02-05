@@ -1,5 +1,3 @@
-% This is a template for your written document.
-%
 % To compile using latexmk on the command line, run the following: 
 % latexmk -pdf main.tex
 
@@ -20,7 +18,9 @@
 Financial investment in the modern era is characterized by an huge  amount of data. Investors seeking to analyze the S\&P 500 index must navigate a complex landscape of quantitative metrics such as revenue growth and P/E ratios, alongside qualitative factors, such as leadership stability and competitive advantage. Visualizing data for over 500 companies presents a significant computational and design challenge. To address this, this project proposes the development of a web-based Stock Scoring Engine. This application will digest large financial datasets to produce a ranked list of stocks based on a proprietary 13-metrics scoring system(Thought it is essential for a stock to have ) .
 
 The value of this Junior Is is in its approach to information hierarchy. Research by Dong et al. shows that visualizing financial "big data" works best when using specific "post-model" strategies. Instead of dumping raw and confusing data on the user, this system handles the heavy calculations in the backend. It processes the entire S\&P 500 and only presents the most important trends and summary stats for the top-ranked stocks. This keeps the dashboard clean and actionable, solving the information overload problem that usually makes financial analysis difficult for individual investors.
-
+\section*{Project Goals and Methodology}
+The primary goal of this software is to automate the ranking of stocks by synthesizing "hard" and "soft" data. Ettredge, Richardson, and Scholz investigate the structure of financial websites, distinguishing between hard data (stock prices, financial statements) and soft information (investor relations, corporate culture). This project adopts their design model to organize the user interface. The proposed system will calculate a composite score out of 130 points, derived from 13 distinct metrics. The interface will be structured to allow users to view the high-level ranking immediately while retaining the ability to drill down into the subjective "soft" scores, such as Moat or Leadership, without obscuring the objective "hard" numbers.
+To ensure the ranking is accurate and representative of the market, the system adheres to the official methodology outlined by S\&P Dow Jones Indices. The application will implement filtering logic based on divisor-based weighting and float-adjustment criteria. This ensures that the universe of stocks analyzed by the software is consistent with industry standards for the S\&P 500, preventing the inclusion of ineligible or low-liquidity assets in the final ranking.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.7]{methodology.png}
@@ -41,6 +41,7 @@ A concise list of features / user stories in the order in which they will be bui
 \end{itemize}
 
 
+\nocite{*}
 \bibliographystyle{acm}
 \bibliography{bibliography.bib}
 
