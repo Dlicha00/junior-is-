@@ -21,12 +21,17 @@ The value of this Junior Is is in its approach to information hierarchy. Researc
 \section*{Project Goals and Methodology}
 The primary goal of this software is to automate the ranking of stocks by synthesizing "hard" and "soft" data. Ettredge, Richardson, and Scholz investigate the structure of financial websites, distinguishing between hard data (stock prices, financial statements) and soft information (investor relations, corporate culture). This project adopts their design model to organize the user interface. The proposed system will calculate a composite score out of 130 points, derived from 13 distinct metrics. The interface will be structured to allow users to view the high-level ranking immediately while retaining the ability to drill down into the subjective "soft" scores, such as Moat or Leadership, without obscuring the objective "hard" numbers.
 To ensure the ranking is accurate and representative of the market, the system adheres to the official methodology outlined by S\&P Dow Jones Indices. The application will implement filtering logic based on divisor-based weighting and float-adjustment criteria. This ensures that the universe of stocks analyzed by the software is consistent with industry standards for the S\&P 500, preventing the inclusion of ineligible or low-liquidity assets in the final ranking.
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.7]{methodology.png}
-\caption{Archie}
-\label{fig:method}       % Give a unique label
-\end{center}
+The core computational engine of the application will be built using Python, specifically leveraging the pandas library. As described by McKinney, the DataFrame provides the optimal data structure for statistical computing and data alignment. The project relies on the DataFrame structure to efficiently store, index, and vectorize calculations across the 500-row dataset for the 13 required metrics.
+\section*{Technical Architecture and System Design}
+The core engine of the application will be built using Python and the pandas library. As described by McKinney~\cite{McKinney2010Pandas}, the DataFrame is the ideal structure for this kind of statistical computing. The project relies on DataFrames to store, index, and run calculations across the 500-stock dataset efficiently.
+
+A major challenge in this project is automating the qualitative scores. While math-based ratios are easy to calculate, metrics like "News/Catalyst" require analyzing unstructured text. This project builds on the work of Schumaker and Chen~\cite{Schumaker2009Textual}, who created the AzFin text system to classify financial news. However, instead of building a custom text analysis module from scratch, this system will integrate a modern AI API. This allows the application to process live news feeds and sentiment more accurately .
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth]{methodology.png}
+  \caption{Archie}
+  \label{fig:method}
 \end{figure}
 
 
