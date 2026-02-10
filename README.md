@@ -1,4 +1,4 @@
-# Your Project Title Here
+# Stock ranking web app  
 A brief description.
 
 ## Feature Calendar
@@ -10,7 +10,7 @@ A brief description.
 | Financial Data Ingestion | Feb 20, 2026 | Download raw metrics (P/E, revenue, etc.) |
 | S&P Standards Filter | Feb 23, 2026 | Apply official S&P eligibility rules |
 | Data Storage | Feb 26, 2026 | Structure pandas DataFrame for all metrics |
-| Numerical Scoring | Mar 1, 2026 | Convert ratios to 1–10 score |
+| Numerical Scoring | Mar 1, 2026 | Convert ratios to 1â€“10 score |
 | AI Qualitative Analysis | Mar 4, 2026 | Use AI API on headlines for "soft" metrics |
 | Ranking Engine | Mar 7, 2026 | Sum 13 metrics and sort descending |
 | Data API | Mar 10, 2026 | Backend endpoint for ranked data |
