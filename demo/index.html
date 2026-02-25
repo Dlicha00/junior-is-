@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock Ranking Demo Prototype</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="bg-orb orb-a" aria-hidden="true"></div>
+  <div class="bg-orb orb-b" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Junior IS Demo Prototype</p>
+        <h1>Find the strongest stocks in one click.</h1>
+        <p class="hero-copy">
+          Front-end only demo of the pipeline flow: pull list, ingest financials, score, rank, inspect.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <button id="loadBtn" class="btn btn-primary">Load Ranked List</button>
+        <button id="explainBtn" class="btn btn-ghost" aria-pressed="false">Show Score Breakdown</button>
+      </div>
+    </header>
+
+    <section class="pipeline-card" aria-label="Pipeline progress">
+      <div class="pipeline-head">
+        <h2>Pipeline Flow</h2>
+        <div class="chip-row" role="tablist" aria-label="Data stages">
+          <button class="chip active" data-stage="raw" role="tab" aria-selected="true">Raw</button>
+          <button class="chip" data-stage="filtered" role="tab" aria-selected="false">Filtered</button>
+          <button class="chip" data-stage="ranked" role="tab" aria-selected="false">Ranked</button>
+        </div>
+      </div>
+      <div class="pipeline-grid">
+        <article class="stage">
+          <p class="stage-label">Universe</p>
+          <p id="universeCount" class="stage-value">503</p>
+          <p class="stage-note">S&P 500 constituents</p>
+        </article>
+        <article class="stage">
+          <p class="stage-label">Financial Data</p>
+          <p id="coveragePct" class="stage-value">87%</p>
+          <p class="stage-note">Current raw metric coverage</p>
+        </article>
+        <article class="stage">
+          <p class="stage-label">Eligible</p>
+          <p id="eligibleCount" class="stage-value">441</p>
+          <p class="stage-note">After rule filter (demo)</p>
+        </article>
+        <article class="stage accent">
+          <p class="stage-label">Top Pick</p>
+          <p id="topTicker" class="stage-value">MSFT</p>
+          <p class="stage-note">Rank #1 in this demo set</p>
+        </article>
+      </div>
+      <ol class="step-strip" aria-label="Milestones">
+        <li class="done">Setup</li>
+        <li class="done">Ticker Download</li>
+        <li class="done">Financial Ingestion</li>
+        <li class="active-step">Scoring + Ranking (Prototype)</li>
+        <li>Dashboard</li>
+      </ol>
+    </section>
+
+    <section class="workspace">
+      <section class="panel ranking-panel" aria-labelledby="rankingTitle">
+        <div class="panel-head">
+          <h2 id="rankingTitle">Ranked Stocks</h2>
+          <div class="mini-stat"><span>Live Demo</span><strong id="rowsLoaded">0 loaded</strong></div>
+        </div>
+        <div class="table-wrap" id="tableWrap" aria-live="polite">
+          <div class="empty-state" id="emptyState">
+            <p class="empty-title">Ready to demo</p>
+            <p class="empty-copy">Press <strong>Load Ranked List</strong> and click a row.</p>
+          </div>
+          <table id="rankingTable" class="ranking-table" hidden>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Ticker</th>
+                <th>Score</th>
+                <th>Quality</th>
+                <th>Value</th>
+                <th>Trend</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel detail-panel" aria-labelledby="detailTitle">
+        <div class="panel-head">
+          <h2 id="detailTitle">Stock Detail</h2>
+          <span id="detailBadge" class="detail-badge">Select a stock</span>
+        </div>
+
+        <div id="detailContent" class="detail-content is-empty">
+          <div class="detail-placeholder">
+            <p>Click any stock row to show a score breakdown.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <template id="detailTemplate">
+    <div class="detail-top">
+      <div>
+        <p class="eyebrow">Selected Stock</p>
+        <h3 class="detail-name"></h3>
+        <p class="detail-sub"></p>
+      </div>
+      <div class="score-pill">
+        <span>Total</span>
+        <strong class="detail-total"></strong>
+      </div>
+    </div>
+
+    <div class="bars" aria-label="Metric scores"></div>
+
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <span>Revenue</span>
+        <strong class="detail-revenue"></strong>
+      </div>
+      <div class="metric-box">
+        <span>P/E</span>
+        <strong class="detail-pe"></strong>
+      </div>
+      <div class="metric-box">
+        <span>Debt</span>
+        <strong class="detail-debt"></strong>
+      </div>
+      <div class="metric-box">
+        <span>AI Signal</span>
+        <strong class="detail-ai"></strong>
+      </div>
+    </div>
+
+    <div class="headline-box">
+      <p class="eyebrow">Demo AI Insight</p>
+      <p class="detail-headline"></p>
+    </div>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
