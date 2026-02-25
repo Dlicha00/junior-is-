@@ -1,0 +1,5 @@
+pandas>=2.2,<3.0
+fastapi>=0.116,<1.0
+uvicorn[standard]>=0.35,<1.0
+lxml>=5.4,<7.0
+simfin>=1.0.1,<2.0

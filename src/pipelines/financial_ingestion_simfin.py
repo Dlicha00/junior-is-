@@ -1,0 +1,187 @@
+from __future__ import annotations
+
+import os
+from datetime import UTC, datetime
+from pathlib import Path
+
+import pandas as pd
+import simfin as sf
+
+from src.pipelines.financial_ingestion import latest_sp500_snapshot_path, load_sp500_tickers
+
+
+def _latest_by_ticker(df: pd.DataFrame) -> pd.DataFrame:
+    """Reduce a SimFin MultiIndex dataframe to latest row per ticker."""
+    out = df.reset_index().sort_values(["Ticker", "Report Date"])
+    out = out.groupby("Ticker", as_index=False).tail(1)
+    return out.reset_index(drop=True)
+
+
+def _latest_shareprice_by_ticker(df: pd.DataFrame) -> pd.DataFrame:
+    out = df.reset_index().sort_values(["Ticker", "Date"])
+    out = out.groupby("Ticker", as_index=False).tail(1)
+    return out.reset_index(drop=True)
+
+
+def _safe_divide(numer: pd.Series, denom: pd.Series) -> pd.Series:
+    result = numer / denom.replace({0: pd.NA})
+    return result
+
+
+def build_simfin_financial_snapshot(
+    sp500_snapshot_path: str | Path | None = None,
+    api_key: str | None = None,
+    data_dir: str | Path = "data/simfin_cache",
+    max_tickers: int | None = None,
+) -> pd.DataFrame:
+    """Load bulk SimFin datasets and build a raw metrics snapshot for S&P 500 tickers."""
+    key = api_key or os.getenv("SIMFIN_API_KEY")
+    if not key:
+        raise ValueError("Missing SimFin API key. Set SIMFIN_API_KEY and retry.")
+
+    tickers = load_sp500_tickers(sp500_snapshot_path or latest_sp500_snapshot_path())
+    if max_tickers is not None:
+        tickers = tickers[:max_tickers]
+
+    sf.set_api_key(key)
+    sf.set_data_dir(str(data_dir))
+
+    companies = sf.load_companies(market="us").reset_index()
+    income = _latest_by_ticker(sf.load_income(variant="annual", market="us"))
+    balance = _latest_by_ticker(sf.load_balance(variant="annual", market="us"))
+    shareprices = _latest_shareprice_by_ticker(sf.load_shareprices(variant="latest", market="us"))
+
+    # Keep raw provider names for transparency in this stage.
+    df = (
+        pd.DataFrame({"ticker": tickers})
+        .merge(companies[["Ticker", "Company Name", "SimFinId"]], left_on="ticker", right_on="Ticker", how="left")
+        .merge(
+            income[
+                [
+                    "Ticker",
+                    "Report Date",
+                    "Publish Date",
+                    "Fiscal Year",
+                    "Fiscal Period",
+                    "Shares (Basic)",
+                    "Shares (Diluted)",
+                    "Revenue",
+                    "Gross Profit",
+                    "Operating Income (Loss)",
+                    "Net Income",
+                    "Net Income (Common)",
+                ]
+            ],
+            on="Ticker",
+            how="left",
+        )
+        .merge(
+            balance[
+                [
+                    "Ticker",
+                    "Total Assets",
+                    "Total Liabilities",
+                    "Total Equity",
+                    "Short Term Debt",
+                    "Long Term Debt",
+                    "Cash, Cash Equivalents & Short Term Investments",
+                    "Total Current Assets",
+                    "Total Current Liabilities",
+                ]
+            ],
+            on="Ticker",
+            how="left",
+        )
+        .merge(
+            shareprices[
+                [
+                    "Ticker",
+                    "Date",
+                    "Close",
+                    "Adj. Close",
+                    "Shares Outstanding",
+                    "Volume",
+                ]
+            ],
+            on="Ticker",
+            how="left",
+        )
+    )
+
+    # Compute simple derived fields useful for later scoring. These are not
+    # SimFin "derived" endpoint metrics; they are local calculations.
+    shares_for_eps = df["Shares (Diluted)"].fillna(df["Shares (Basic)"])
+    df["eps_simple"] = _safe_divide(df["Net Income (Common)"], shares_for_eps)
+    df["pe_simple"] = _safe_divide(df["Close"], df["eps_simple"])
+    df["totalDebt_simple"] = df["Short Term Debt"].fillna(0) + df["Long Term Debt"].fillna(0)
+    df["currentRatio_simple"] = _safe_divide(
+        df["Total Current Assets"], df["Total Current Liabilities"]
+    )
+
+    fetched_at = datetime.now(UTC).replace(microsecond=0).isoformat()
+    output = pd.DataFrame(
+        {
+            "ticker": df["ticker"],
+            "company_name": df["Company Name"],
+            "simfin_id": df["SimFinId"],
+            "source": "simfin",
+            "source_dataset_income": "us-income-annual",
+            "source_dataset_balance": "us-balance-annual",
+            "source_dataset_shareprices": "us-shareprices-latest",
+            "fetched_at_utc": fetched_at,
+            "report_date": df["Report Date"],
+            "publish_date": df["Publish Date"],
+            "fiscal_year": df["Fiscal Year"],
+            "fiscal_period": df["Fiscal Period"],
+            "price_date": df["Date"],
+            "close": df["Close"],
+            "adj_close": df["Adj. Close"],
+            "volume": df["Volume"],
+            "shares_outstanding_latest": df["Shares Outstanding"],
+            "shares_basic": df["Shares (Basic)"],
+            "shares_diluted": df["Shares (Diluted)"],
+            "revenue": df["Revenue"],
+            "gross_profit": df["Gross Profit"],
+            "operating_income": df["Operating Income (Loss)"],
+            "net_income": df["Net Income"],
+            "net_income_common": df["Net Income (Common)"],
+            "total_assets": df["Total Assets"],
+            "total_liabilities": df["Total Liabilities"],
+            "total_equity": df["Total Equity"],
+            "short_term_debt": df["Short Term Debt"],
+            "long_term_debt": df["Long Term Debt"],
+            "total_debt_simple": df["totalDebt_simple"],
+            "cash_and_equivalents": df["Cash, Cash Equivalents & Short Term Investments"],
+            "total_current_assets": df["Total Current Assets"],
+            "total_current_liabilities": df["Total Current Liabilities"],
+            "current_ratio_simple": df["currentRatio_simple"],
+            "eps_simple": df["eps_simple"],
+            "pe_simple": df["pe_simple"],
+        }
+    )
+
+    return output
+
+
+def save_simfin_financial_metrics_snapshot(
+    api_key: str | None = None,
+    output_dir: str | Path = "data/raw",
+    sp500_snapshot_path: str | Path | None = None,
+    max_tickers: int | None = None,
+) -> Path:
+    df = build_simfin_financial_snapshot(
+        sp500_snapshot_path=sp500_snapshot_path,
+        api_key=api_key,
+        max_tickers=max_tickers,
+    )
+
+    if df.empty:
+        raise RuntimeError("No rows produced for SimFin financial metrics snapshot.")
+
+    out_dir = Path(output_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    snapshot_date = datetime.now(UTC).date().isoformat()
+    suffix = f"_{max_tickers}" if max_tickers is not None else ""
+    out_path = out_dir / f"simfin_financials_{snapshot_date}{suffix}.csv"
+    df.to_csv(out_path, index=False)
+    return out_path
