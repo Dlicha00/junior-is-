@@ -36,6 +36,10 @@ To understand the design, it is important to define the main concepts and constr
 
 Second, the project is built around working with data in tables. In Python, pandas library is  the core tool because it makes it easy to work with labeled columns, handle missing values and merge data from different sources. \cite{McKinney2010Pandas}.In practical terms,it lets our program combine company info, financial statement data, and price data into one clean table that’s easy to compare.
 
+Third, the web app looks at more than one thing. A stock can be cheap but not growing much or profitable but still risky financially. Since those factors are measured differently, I have to standardize them and give them weights before putting them together. That’s why I use a multi-criteria approach, because it helps combine different strengths and weaknesses into one overall ranking.\cite{behzadian2012vikor}. In my project, this means each metric adds to the final score without letting one single factor control the whole ranking.
+
+Fourth, the system recognizes between hard and soft information. Hard information includes numeric and structured fields such as revenue, net income, debt, liquidity … Soft information includes narrative and contextual signals such as management quality, strategic direction, and major news catalysts. Research I have read argues these categories should be surfaced differently because users process them differently during decision-making \cite{Ettredge2001WebDesign}. My interface is built around that idea: hard metrics are there for direct comparison in the ranking table, while soft metrics are still shown but in a more supportive way, so they add context without making the main view feel crowded.
+
 \section{Methodology}
 Dijkstra's algorithm was chosen for single-source shortest path computation on graphs with non-negative edge weights, following the implementation presented in CLRS~\cite{clrsAlgorithms}.
 
