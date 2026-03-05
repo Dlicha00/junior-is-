@@ -32,6 +32,10 @@ Overall, this Junior IS  presents the stock scoring engine as a link between the
 
 \section{Related Works}
 
+To understand the design, it is important to define the main concepts and constraints. At first, the plan was to rank all the stocks on the market, but because it was hard to find financial data for all of them, i had to narrow it down. So decided for the data to be based on the S\&P 500, which is not just a random list of large U.S. companies. The index has clear rules from S\&P Dow Jones Indices about which companies can be included and kept in it like liquidity and overall market structure.cite{SPGlobal2016Methodology}. For a ranking web app, this matters because the results are only as good as the stocks being ranked. If the list includes stocks that should not be there, outdated ones or ones that are barely traded, the rankings can be misleading. That’s why my project starts with a clear list of the actual constituents before any scoring happens.
+
+Second, the project is built around working with data in tables. In Python, pandas library is  the core tool because it makes it easy to work with labeled columns, handle missing values and merge data from different sources. \cite{McKinney2010Pandas}.In practical terms,it lets our program combine company info, financial statement data, and price data into one clean table that’s easy to compare.
+
 \section{Methodology}
 Dijkstra's algorithm was chosen for single-source shortest path computation on graphs with non-negative edge weights, following the implementation presented in CLRS~\cite{clrsAlgorithms}.
 
