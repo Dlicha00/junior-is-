@@ -18,7 +18,7 @@
 
 \section{Introduction}
 Retail investors today have access to more financial data than ever before,  but access does not necessarily guarantee clarity. In theory, anyone can access earnings reports, valuation ratios, analyst headlines, and market data for the entire S\&P 500. In reality, the high volume of information and inconsistency can make decision-making difficult, especially for beginners. My Junior IS, Web-Based Stock Scoring Engine, addresses this gap by turning these financial inputs into a ranked list of companies. My idea is simple: instead of asking users to manually compare hundreds of data points across hundreds of firms, the system calculates a standardized score based on thirteen metrics, which I believe indicate a good stock, and presents the results in a user-friendly manner. You may be wondering about the accuracy of these metrics. However, I believe that determining the accuracy of these 13 metrics would make a different topic, and it is more economics focused.
-This project matters because most investor-facing tools either over-simplify or over-complicate. Some investor-facing tools just show a few key stats and leave out a lot of important details. And others present extensive tables and charts but leave the synthesis entirely to the user. My approach is intentionally in the middle: automate the heavy computation then present both summary and drill-down views so users can quickly identify strong candidates and still inspect why each candidate ranked where it did. This design approach argues that financial interfaces should separate and organize information based on decision value, rather than only maximizing the amount of data displayed on screen
+This project matters because most investor-facing tools either over-simplify or over-complicate. Some investor-facing tools just show a few key stats and leave out a lot of important details. And others present extensive tables and charts but leave the synthesis entirely to the user. My approach is intentionally in the middle: automate the heavy computation then present both summary and drill-down views so users can quickly identify strong candidates and still inspect why each candidate ranked where it did. This design approach argues that financial interfaces should separate and organize information based on decision value, rather than only maximizing the amount of data displayed on screen. \cite{Ettredge2001WebDesign}.
 \section{Related Works}
 
 \section{Methodology}
@@ -30,18 +30,13 @@ An exemplary figure is shown in Figure~\ref{fig:dijkstra}. Any time a figure is 
 %\begin{figure}[b] puts the image to the (closest) bottom of page
 %\begin{figure}[t] puts the image to the (closest) top of page
 %\begin{figure}[h] allows the image to float, putting it roughly wherever it was placed in the text.
-\begin{figure}[b] 
-\begin{center}
-  \includegraphics[width=5cm]{imgs/dijkstra.png}
-  \caption{Dijkstra's algorithm does not work on graphs with negative edge weights, as evidenced here.}
-  \label{fig:dijkstra}
- \end{center}
-\end{figure}
+
 
 
 
 \section{Conclusion}
 
+\nocite{*}
 \bibliographystyle{acm}
 \bibliography{bibliography.bib}
 
