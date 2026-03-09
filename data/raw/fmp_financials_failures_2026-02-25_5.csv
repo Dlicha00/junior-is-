@@ -1,0 +1,5 @@
+ticker,error,failed_at_utc
+MMM,FMP HTTP error 402 for quote: Premium Query Parameter: 'Special Endpoint : This value set for 'symbol' is not available under your current subscription please visit our subscription page to upgrade your plan at https://financialmodelingprep.com/,2026-02-25T03:03:48+00:00
+AOS,FMP HTTP error 402 for quote: Premium Query Parameter: 'Special Endpoint : This value set for 'symbol' is not available under your current subscription please visit our subscription page to upgrade your plan at https://financialmodelingprep.com/,2026-02-25T03:03:49+00:00
+ABT,FMP HTTP error 402 for quote: Premium Query Parameter: 'Special Endpoint : This value set for 'symbol' is not available under your current subscription please visit our subscription page to upgrade your plan at https://financialmodelingprep.com/,2026-02-25T03:03:49+00:00
+ACN,FMP HTTP error 402 for quote: Premium Query Parameter: 'Special Endpoint : This value set for 'symbol' is not available under your current subscription please visit our subscription page to upgrade your plan at https://financialmodelingprep.com/,2026-02-25T03:03:50+00:00
