@@ -33,23 +33,30 @@ uvicorn src.main:app --reload
 - Open `http://127.0.0.1:8000/health`
 - Expected response: `{"status":"ok"}`
 
+
 ## Feature Calendar
 
-| **Feature/Task** | **Due date** | **Notes** |
-| --- | --- | --- |
-| Initial Setup | Feb 13, 2026 | Python env; install pandas + web framework |
-| Stock List Download | Feb 16, 2026 | Pull current S&P 500 tickers |
-| Financial Data Ingestion | Feb 20, 2026 | Download raw metrics (P/E, revenue, etc.) |
-| S&P Standards Filter | Feb 23, 2026 | Apply official S&P eligibility rules |
-| Data Storage | Feb 26, 2026 | Structure pandas DataFrame for all metrics |
-| Numerical Scoring | Mar 1, 2026 | Convert ratios to 1–10 score |
-| AI Qualitative Analysis | Mar 4, 2026 | Use AI API on headlines for "soft" metrics |
-| Ranking Engine | Mar 7, 2026 | Sum 13 metrics and sort descending |
-| Data API | Mar 10, 2026 | Backend endpoint for ranked data |
-| Web Dashboard | Mar 13, 2026 | Main table of top-ranked stocks |
-| Detailed View | Mar 15, 2026 | Per-stock breakdown of scores |
-| Stretch Goal: Live Search Bar | if time permits | Instant ticker search |
-| Stretch Goal: Watchlist | if time permits | Save favorite stocks |
+| **Feature/Task** | **Target Date** | **Status** | **Notes** |
+| --- | --- | --- | --- |
+| Initial Setup | Feb 13, 2026 | Done | Python env + FastAPI setup in place |
+| Stock List Download | Feb 16, 2026 | Done | `scripts/download_sp500.py` writes dated raw snapshot |
+| Financial Data Ingestion (SimFin) | Feb 20, 2026 | Done | `scripts/download_financials_simfin.py` writes dated financial snapshot |
+| S&P Standards Filter | Feb 23, 2026 | Done | `scripts/filter_sp500_eligibility.py` outputs eligible + excluded files |
+| Data Storage (metrics master) | Feb 26, 2026 | Done | `scripts/build_metrics_master.py` writes `metrics_master_YYYY-MM-DD.csv` |
+| Data API (`/stocks/eligible`) | Mar 10, 2026 | Done | Endpoints: `/health`, `/stocks/eligible`, `/stocks/eligible/{ticker}` |
+| Web Dashboard | Mar 13, 2026 | Done | `demo/` frontend loads eligible stocks and renders table + detail panel |
+| Detailed View | Mar 15, 2026 | Done | Row selection renders metric detail card in right panel |
+| Numerical Scoring | Mar 1, 2026 | Not started | 1-10 scoring pipeline is not in current code |
+| AI Qualitative Analysis | Mar 4, 2026 | Not started | No AI-driven qualitative metrics in current API/pipeline |
+| Ranking Engine | Mar 7, 2026 | Not started | No combined rank output endpoint yet |
+| Stretch: Live Search Bar | If time permits | Not started | Dashboard has pagination but no search input |
+| Stretch: Watchlist | If time permits | Not started | No persistence/watchlist flow yet |
+
+## Current Issues
+
+- No automated tests yet for pipeline scripts, data transforms, or API endpoints.
+- API currently serves eligibility and base metric fields, but not final ranked scores.
+- Frontend requires backend running locally and only shows a generic availability error when API is down.
 
 ## Stock List Download (Wikipedia)
 
