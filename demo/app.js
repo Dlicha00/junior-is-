@@ -1,111 +1,20 @@
-const stocks = [
-  {
-    rank: 1,
-    ticker: "MSFT",
-    name: "Microsoft",
-    total: 92,
-    quality: 9.6,
-    value: 7.1,
-    trend: 9.1,
-    ai: 8.8,
-    revenue: "$245B",
-    pe: "34.2",
-    debt: "$47B",
-    sector: "Software",
-    headline: "AI product momentum remains strong while enterprise demand stays resilient."
-  },
-  {
-    rank: 2,
-    ticker: "NVDA",
-    name: "NVIDIA",
-    total: 90,
-    quality: 9.8,
-    value: 5.4,
-    trend: 9.9,
-    ai: 9.5,
-    revenue: "$130B",
-    pe: "56.0",
-    debt: "$11B",
-    sector: "Semiconductors",
-    headline: "Data-center expansion and AI infrastructure spending continue to support growth."
-  },
-  {
-    rank: 3,
-    ticker: "AVGO",
-    name: "Broadcom",
-    total: 87,
-    quality: 9.1,
-    value: 6.3,
-    trend: 8.7,
-    ai: 8.2,
-    revenue: "$51B",
-    pe: "31.8",
-    debt: "$74B",
-    sector: "Semiconductors",
-    headline: "Strong AI connectivity demand offsets softness in select legacy segments."
-  },
-  {
-    rank: 4,
-    ticker: "AAPL",
-    name: "Apple",
-    total: 84,
-    quality: 8.9,
-    value: 6.0,
-    trend: 7.8,
-    ai: 7.4,
-    revenue: "$391B",
-    pe: "29.1",
-    debt: "$106B",
-    sector: "Consumer Tech",
-    headline: "Services growth remains a stabilizer while hardware cycle sentiment is mixed."
-  },
-  {
-    rank: 5,
-    ticker: "GOOGL",
-    name: "Alphabet",
-    total: 83,
-    quality: 8.7,
-    value: 7.4,
-    trend: 7.3,
-    ai: 8.4,
-    revenue: "$350B",
-    pe: "25.6",
-    debt: "$27B",
-    sector: "Internet Platforms",
-    headline: "Cloud and AI monetization support positive outlook despite competitive pressure."
-  },
-  {
-    rank: 6,
-    ticker: "ABT",
-    name: "Abbott Laboratories",
-    total: 80,
-    quality: 8.4,
-    value: 7.8,
-    trend: 6.8,
-    ai: 7.0,
-    revenue: "$42B",
-    pe: "15.0",
-    debt: "$14B",
-    sector: "Health Care",
-    headline: "Defensive cash flow profile and diversified product mix support score stability."
-  }
-];
+const API_BASE =
+  window.location.port === "8000"
+    ? "http://127.0.0.1:8001"
+    : "http://127.0.0.1:8000";
+// UI paging sizes.
+const INITIAL_VISIBLE_ROWS = 10;
+const SHOW_MORE_STEP = 10;
 
-const stagePresets = {
-  raw: { universe: 503, coverage: "87%", eligible: 503, top: "N/A", loaded: "0 loaded" },
-  filtered: { universe: 503, coverage: "87%", eligible: 441, top: "N/A", loaded: "0 loaded" },
-  ranked: { universe: 503, coverage: "87%", eligible: 441, top: "MSFT", loaded: `${stocks.length} loaded` }
-};
-
+// Page state.
 const state = {
   loaded: false,
   selectedTicker: null,
-  showBreakdown: false,
-  stage: "raw"
+  stocks: [],
+  visibleCount: INITIAL_VISIBLE_ROWS,
+  snapshot: {}
 };
 
-const loadBtn = document.getElementById("loadBtn");
-const explainBtn = document.getElementById("explainBtn");
 const emptyState = document.getElementById("emptyState");
 const table = document.getElementById("rankingTable");
 const tbody = table.querySelector("tbody");
@@ -116,141 +25,138 @@ const rowsLoaded = document.getElementById("rowsLoaded");
 const universeCount = document.getElementById("universeCount");
 const coveragePct = document.getElementById("coveragePct");
 const eligibleCount = document.getElementById("eligibleCount");
-const topTicker = document.getElementById("topTicker");
+const showMoreBtn = document.getElementById("showMoreBtn");
 
-function formatNum(value) {
-  return Number.isFinite(value) ? value.toFixed(1) : "-";
+// Toggle loading/empty view.
+function showLoadingState(title, copy) {
+  emptyState.querySelector(".empty-title").textContent = title;
+  emptyState.querySelector(".empty-copy").textContent = copy;
+  emptyState.hidden = false;
+  table.hidden = true;
+  showMoreBtn.hidden = true;
 }
 
-function metricBarCell(value) {
-  return `
-    <div class="delta">
-      <div class="delta-bar"><span style="width:${Math.max(0, Math.min(100, value * 10))}%"></span></div>
-      <small>${formatNum(value)}</small>
-    </div>
-  `;
+// Top stats summary.
+function updateSummary(snapshot) {
+  universeCount.textContent = String(snapshot.universe_count ?? "-");
+  coveragePct.textContent = snapshot.coverage_pct != null ? `${snapshot.coverage_pct}%` : "-";
+  eligibleCount.textContent = String(snapshot.eligible_count ?? 0);
+  const shown = Math.min(state.visibleCount, state.stocks.length);
+  rowsLoaded.textContent = `${shown} / ${state.stocks.length} shown`;
 }
 
+// Fetch eligible stocks.
+async function loadStocksFromApi() {
+  const response = await fetch(`${API_BASE}/stocks/eligible?limit=1000`);
+  if (!response.ok) {
+    throw new Error(`API request failed: ${response.status}`);
+  }
+  return response.json();
+}
+
+// Build ranking rows.
 function renderTable() {
   tbody.innerHTML = "";
-  for (const stock of stocks) {
+  const visibleStocks = state.stocks.slice(0, state.visibleCount);
+
+  for (const stock of visibleStocks) {
     const tr = document.createElement("tr");
     tr.dataset.ticker = stock.ticker;
+    tr.tabIndex = 0;
+    tr.setAttribute("role", "button");
+    tr.setAttribute("aria-label", `Select ${stock.ticker} from filtered list`);
     tr.innerHTML = `
-      <td><span class="rank-badge">${stock.rank}</span></td>
       <td class="ticker-cell">${stock.ticker}</td>
-      <td class="score-text">${stock.total}</td>
-      <td>${metricBarCell(stock.quality)}</td>
-      <td>${metricBarCell(stock.value)}</td>
-      <td>${metricBarCell(stock.trend)}</td>
+      <td>${stock.sector}</td>
+      <td>${stock.revenue_display}</td>
+      <td>${stock.pe_display}</td>
+      <td>${stock.debt_display}</td>
     `;
     tr.addEventListener("click", () => selectStock(stock.ticker));
+    tr.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectStock(stock.ticker);
+      }
+    });
     tbody.appendChild(tr);
   }
-}
 
-function setStage(stageKey) {
-  state.stage = stageKey;
-  const p = stagePresets[stageKey];
-  universeCount.textContent = p.universe;
-  coveragePct.textContent = p.coverage;
-  eligibleCount.textContent = p.eligible;
-  topTicker.textContent = p.top;
-  rowsLoaded.textContent = state.loaded ? `${stocks.length} loaded` : p.loaded;
-
-  document.querySelectorAll(".chip").forEach((chip) => {
-    const active = chip.dataset.stage === stageKey;
-    chip.classList.toggle("active", active);
-    chip.setAttribute("aria-selected", String(active));
+  document.querySelectorAll("#rankingTable tbody tr").forEach((row) => {
+    row.classList.toggle("active", row.dataset.ticker === state.selectedTicker);
   });
+
+  emptyState.hidden = true;
+  table.hidden = false;
+  showMoreBtn.hidden = state.visibleCount >= state.stocks.length;
 }
 
+// Build right-side detail panel.
 function renderDetail(stock) {
   detailContent.classList.remove("is-empty");
   detailContent.innerHTML = "";
   const fragment = detailTemplate.content.cloneNode(true);
 
-  fragment.querySelector(".detail-name").textContent = `${stock.ticker} · ${stock.name}`;
+  fragment.querySelector(".detail-name").textContent = `${stock.ticker} - ${stock.company_name}`;
   fragment.querySelector(".detail-sub").textContent = stock.sector;
-  fragment.querySelector(".detail-total").textContent = stock.total;
-  fragment.querySelector(".detail-revenue").textContent = stock.revenue;
-  fragment.querySelector(".detail-pe").textContent = stock.pe;
-  fragment.querySelector(".detail-debt").textContent = stock.debt;
-  fragment.querySelector(".detail-ai").textContent = `${stock.ai}/10`;
-  fragment.querySelector(".detail-headline").textContent = stock.headline;
-
-  const bars = fragment.querySelector(".bars");
-  const breakdown = [
-    ["Quality", stock.quality, false],
-    ["Value", stock.value, false],
-    ["Trend", stock.trend, false],
-    ["AI", stock.ai, true]
-  ];
-
-  for (const [label, value, ai] of breakdown) {
-    const row = document.createElement("div");
-    row.className = `bar-row${ai ? " ai" : ""}`;
-    row.innerHTML = `
-      <label>${label}</label>
-      <div class="bar-track"><span class="bar-fill"></span></div>
-      <span>${formatNum(value)}</span>
-    `;
-    bars.appendChild(row);
-    requestAnimationFrame(() => {
-      row.querySelector(".bar-fill").style.width = `${Math.max(0, Math.min(100, value * 10))}%`;
-    });
-  }
+  fragment.querySelector(".detail-revenue").textContent = stock.revenue_display;
+  fragment.querySelector(".detail-pe").textContent = stock.pe_display;
+  fragment.querySelector(".detail-debt").textContent = stock.debt_display;
+  fragment.querySelector(".detail-name-short").textContent = stock.company_name;
 
   detailContent.appendChild(fragment);
-  detailContent.classList.toggle("hidden-breakdown", !state.showBreakdown);
   detailContent.classList.add("flash");
   setTimeout(() => detailContent.classList.remove("flash"), 400);
-  detailBadge.textContent = `Rank #${stock.rank}`;
+  detailBadge.textContent = "Eligible";
 }
 
+// Set active row and detail card.
 function selectStock(ticker) {
   state.selectedTicker = ticker;
-  const stock = stocks.find((s) => s.ticker === ticker);
+  const stock = state.stocks.find((s) => s.ticker === ticker);
   if (!stock) return;
 
   document.querySelectorAll("#rankingTable tbody tr").forEach((row) => {
     row.classList.toggle("active", row.dataset.ticker === ticker);
   });
 
-  if (state.stage !== "ranked") setStage("ranked");
   renderDetail(stock);
 }
 
-function loadRankings() {
-  if (!state.loaded) {
-    renderTable();
+// Main data load flow.
+async function loadRankings() {
+  showLoadingState("Loading", "Loading filtered stocks...");
+
+  try {
+    const payload = await loadStocksFromApi();
+    state.stocks = payload.items ?? [];
+    state.visibleCount = INITIAL_VISIBLE_ROWS;
     state.loaded = true;
-    emptyState.hidden = true;
-    table.hidden = false;
-    setStage("ranked");
-    loadBtn.textContent = "Reload Demo";
-  } else {
-    tbody.innerHTML = "";
+    state.snapshot = payload.snapshot ?? {};
+    updateSummary(state.snapshot);
+
+    if (state.stocks.length === 0) {
+      showLoadingState("No data", "No eligible stocks were returned by the API.");
+      detailBadge.textContent = "No selection";
+      return;
+    }
+
     renderTable();
-  }
-
-  if (!state.selectedTicker) {
-    selectStock(stocks[0].ticker);
+    selectStock(state.selectedTicker ?? state.stocks[0].ticker);
+    updateSummary(state.snapshot);
+  } catch (error) {
+    rowsLoaded.textContent = "0 loaded";
+    showLoadingState("API unavailable", `Start backend on ${API_BASE}, then refresh.`);
+    detailBadge.textContent = "Unavailable";
   }
 }
 
-function toggleBreakdown() {
-  state.showBreakdown = !state.showBreakdown;
-  explainBtn.setAttribute("aria-pressed", String(state.showBreakdown));
-  explainBtn.textContent = state.showBreakdown ? "Hide Score Breakdown" : "Show Score Breakdown";
-  detailContent.classList.toggle("hidden-breakdown", !state.showBreakdown);
-}
-
-loadBtn.addEventListener("click", loadRankings);
-explainBtn.addEventListener("click", toggleBreakdown);
-
-document.querySelectorAll(".chip").forEach((chip) => {
-  chip.addEventListener("click", () => setStage(chip.dataset.stage));
+// Load extra rows.
+showMoreBtn.addEventListener("click", () => {
+  state.visibleCount = Math.min(state.visibleCount + SHOW_MORE_STEP, state.stocks.length);
+  renderTable();
+  updateSummary(state.snapshot);
 });
 
-setStage("raw");
+// Initial render.
+loadRankings();

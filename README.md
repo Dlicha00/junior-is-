@@ -91,3 +91,32 @@ $env:SIMFIN_API_KEY="your_api_key_here"
 Outputs:
 
 - `data/raw/simfin_financials_YYYY-MM-DD.csv`
+
+## S&P Standards Filter
+
+Filter the raw SimFin snapshot into:
+- eligible stocks for scoring
+- excluded stocks with `exclusion_reason`
+
+Run:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\filter_sp500_eligibility.py
+```
+
+Outputs:
+
+- `data/processed/eligible_stocks_YYYY-MM-DD.csv`
+- `data/processed/excluded_stocks_YYYY-MM-DD.csv`
+
+## Data Storage
+
+Build the canonical processed DataFrame for downstream scoring:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\build_metrics_master.py
+```
+
+Output:
+
+- `data/processed/metrics_master_YYYY-MM-DD.csv`

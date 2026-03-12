@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import os
 from datetime import UTC, datetime
 from pathlib import Path
@@ -7,25 +5,46 @@ from pathlib import Path
 import pandas as pd
 import simfin as sf
 
-from src.pipelines.financial_ingestion import latest_sp500_snapshot_path, load_sp500_tickers
+#this function looks to find the most recent S&P 500 snapshot CSV and get the path to it.
+def latest_sp500_snapshot_path(data_dir: str | Path = "data/raw") -> Path:
+    data_path = Path(data_dir)
+    matches = sorted(data_path.glob("sp500_constituents_*.csv"))
+    if not matches:
+        raise FileNotFoundError(
+            "No S&P 500 snapshot found. Run scripts/download_sp500.py first."
+        )
+    return matches[-1]
 
+#This function opens the S&P 500 CSV file and returns a clean Python list of ticker symbols.
+def load_sp500_tickers(snapshot_path: str | Path | None = None) -> list[str]:
+    path = Path(snapshot_path) if snapshot_path else latest_sp500_snapshot_path()
+    df = pd.read_csv(path)
+    if "ticker" not in df.columns:
+        raise ValueError(f"Ticker column not found in {path}")
+    tickers = [
+        ticker
+        for ticker in (str(t).strip().upper() for t in df["ticker"].dropna())
+        if ticker
+    ]
+    if not tickers:
+        raise ValueError(f"No tickers loaded from {path}")
+    return tickers
 
+#for each stock ticker, keep only the newest financial row
 def _latest_by_ticker(df: pd.DataFrame) -> pd.DataFrame:
-    """Reduce a SimFin MultiIndex dataframe to latest row per ticker."""
     out = df.reset_index().sort_values(["Ticker", "Report Date"])
     out = out.groupby("Ticker", as_index=False).tail(1)
     return out.reset_index(drop=True)
 
-
+#It keeps only the most recent stock price row for each ticker.
 def _latest_shareprice_by_ticker(df: pd.DataFrame) -> pd.DataFrame:
     out = df.reset_index().sort_values(["Ticker", "Date"])
     out = out.groupby("Ticker", as_index=False).tail(1)
     return out.reset_index(drop=True)
 
-
+# prevents errors from happenning 
 def _safe_divide(numer: pd.Series, denom: pd.Series) -> pd.Series:
-    result = numer / denom.replace({0: pd.NA})
-    return result
+    return numer / denom.replace({0: pd.NA})
 
 
 def build_simfin_financial_snapshot(
@@ -39,7 +58,7 @@ def build_simfin_financial_snapshot(
     if not key:
         raise ValueError("Missing SimFin API key. Set SIMFIN_API_KEY and retry.")
 
-    tickers = load_sp500_tickers(sp500_snapshot_path or latest_sp500_snapshot_path())
+    tickers = load_sp500_tickers(sp500_snapshot_path)
     if max_tickers is not None:
         tickers = tickers[:max_tickers]
 
