@@ -84,9 +84,12 @@ In this subsection, I will explain how the project handles non-numeric informati
 \subsection{Ranking Pipeline and Interface Output}
 In this subsection, I will explain how the component scores are aggregated into a final ranking and then presented to the user. I will describe the ranked summary view, the per-stock drill-down view, and the design choice to show both an overall score and the metric breakdown so users can verify why a company appears where it does.
 
-\subsection{Reproducibility and Implementation Details}
-In this subsection, I will identify the tools and implementation details another person would need to reproduce the project at a high level. This includes the Python-based backend, the API layer, the data-processing workflow, and the sequence of steps from data ingestion to the web interface.
+\subsection{Reproducibility}
+In this subsection, I describe the high-level workflow and components needed so the project can be reproduced consistently.
 
+
+\section{Implementation}
+The stock scoring engine is built as a web-based application with a Python backend and a browser-based frontend. Python was selected because it is effective for data handling and integrates well with financial libraries, APIs, and LLM workflows \cite{McKinney2010Pandas}. Most of the processing happens in the backend, where the system follows a pipeline from data collection to final score output. It starts by retrieving the list of S\&P 500 companies (via Wikipedia scraping), then pulls the financial and market data required for the model from external APIs (FMP API). After collection, the data is cleaned because companies do not always report values in the same format and some fields can be missing. Pandas is used to structure the tables and handle missing values \cite{McKinney2010Pandas}. Once cleaned, the data is stored in a structured format such as CSV so the system does not repeatedly call the same APIs, which improves runtime efficiency. The metrics are then normalized, weighted scores are calculated, and final rankings are sent to the frontend. On the frontend, users can view ranked companies and inspect score breakdowns to understand why each company received its position.
 
 \section{Results}
 In this section, I will report the outputs produced by the scoring engine and explain how I will judge whether the system is working as intended. Rather then claiming guaranteed investment performance, I will focus on whether the system produces transparent, consistent, and useful rankings from the chosen inputs.
