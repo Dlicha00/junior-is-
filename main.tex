@@ -119,7 +119,14 @@ This section is not meant to prove that the system can beat the stock market. Th
 Figure~\ref{fig:stock_detail} shows the stock detail view for VRTX (Vertex Pharmaceuticals), which ranked first in the current prototype with a score of 20/130. The soft metrics are all 0/60 since that component is not yet implemented, so the current rankings reflect only the seven quantitative metrics.
 
 \subsection{Tables, Figures, and Metric Breakdowns}
-In this subsection, I will identify the tables and figures that will appear in the final paper. These will likely include a sample ranked table, a per-company metric breakdown, and a figure or diagram showing the scoring pipeline from raw data to final rank.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{imgs/ranking_top10.png}
+    \caption{Prototype quantitative ranking table (top rows shown).}
+    \label{fig:ranking_table}
+\end{figure}
+
+Figure~\ref{fig:ranking_table} shows the top 10 results from the current prototype run, with 439 companies scored in total. All ten companies share the same score of 20/130, which reflects the fact that only the quantitative component is active and several metrics are returning zero for most companies due to incomplete data. Once the soft metrics are integrated and data gaps are resolved, the scores should spread out enough to produce a more meaningful separation between companies.
 
 \subsection{Evaluation Criteria}
 In this subsection, I will explain what counts as success or failure for this project. Success will mean that the system can consistently ingest data, compute scores without obvious breakdowns, and present rankings in a way that is understandable and inspectable by a user.
