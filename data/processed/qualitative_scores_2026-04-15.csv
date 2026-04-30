@@ -1,0 +1,112 @@
+ticker,moat_points,leadership_points,secular_trend_points,culture_mission_points,talent_quality_points,recession_resilience_points,qualitative_summary,qualitative_model,qualitative_scored_at_utc
+ABNB,10,10,10,10,10,0,"Dominant global platform for unique accommodations, benefiting from experiential travel trends and flexible work. Strong network effects and brand. Highly sensitive to economic downturns.",gemini-2.5-flash,2026-04-15T21:56:07+00:00
+ACN,10,10,10,10,10,5,"Global leader in IT consulting and services, benefiting from widespread digital transformation. Strong brand, deep expertise, and attracts top talent. Consulting can be somewhat cyclical.",gemini-2.5-flash,2026-04-15T21:56:07+00:00
+ADBE,10,10,10,10,10,10,Dominant in creative and digital experience software with a strong subscription model and high switching costs. Benefits from digital transformation. Highly resilient due to essential tools.,gemini-2.5-flash,2026-04-15T21:56:07+00:00
+ADP,10,10,10,5,5,10,Leading provider of essential payroll and HR services with high switching costs and recurring revenue. Benefits from outsourcing trends. Highly resilient during economic downturns.,gemini-2.5-flash,2026-04-15T21:56:07+00:00
+ALGN,10,10,10,10,10,5,"Dominant in clear aligners (Invisalign), benefiting from aesthetic dentistry trends and digital innovation. Strong brand and patent moat. Discretionary nature offers some recession sensitivity.",gemini-2.5-flash,2026-04-15T21:56:07+00:00
+AMAT,10,10,10,10,10,0,"Essential supplier to the semiconductor industry, benefiting from massive secular trends in digitalization. Possesses a strong technological moat and attracts top talent, but is highly cyclical.",gemini-2.5-flash,2026-04-15T21:56:07+00:00
+AMP,5,5,5,5,5,5,"Established financial services firm focused on advice and asset management. Faces competitive pressures and market cyclicality, but serves a growing demographic needing financial planning.",gemini-2.5-flash,2026-04-15T21:56:07+00:00
+ANET,10,10,10,5,10,10,"Arista Networks excels in moat, leadership, secular trends, talent, and resilience, with a decent culture and mission.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+APO,5,5,5,0,5,5,"Apollo Global Management has some moat and leadership, but lacks strong culture and mission indicators. It shows moderate resilience.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+APP,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+AVGO,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+BLK,10,10,10,10,10,5,"Global asset management leader with a powerful brand, innovative platforms like Aladdin, and strong leadership. Benefits from passive investing trends, but AUM can be sensitive to market downturns.",gemini-2.5-flash,2026-04-15T21:56:07+00:00
+BX,10,10,5,5,5,5,"Blackstone exhibits strong moat and leadership. Secular trends, culture, talent, and resilience are moderately positive.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+CDNS,10,10,10,10,10,5,"Critical EDA software provider with an extremely strong moat and excellent leadership. Benefits from robust semiconductor and AI trends, but faces industry cyclicality.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+CMG,10,10,10,10,10,5,"Strong brand and ""Food with Integrity"" mission drive growth in fast-casual. Excellent leadership, culture, and talent. Resilient, but still subject to consumer discretionary spending.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+COIN,5,5,5,5,5,0,"Coinbase has moderate scores across most metrics, but lacks recession resilience.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+COP,10,,,,,,,gemma-3-1b-it,2026-04-15T23:15:34+00:00
+CPRT,10,5,5,5,5,10,"Copart shows strong moat and resilience. Leadership, secular trends, culture, and talent are moderately positive.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+CSGP,10,10,10,5,5,5,"Dominant commercial real estate data and marketplace provider with a strong moat and visionary leadership. Benefits from digitalization, but real estate cycles pose some risk.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+CTSH,5,5,5,5,5,5,"A large IT services provider benefiting from digital transformation, but facing intense competition. Stable leadership and global delivery model provide some resilience.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+DASH,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+DDOG,5,,,,,,,gemma-3-1b-it,2026-04-15T23:18:34+00:00
+DECK,10,10,10,5,5,5,"Strong brand portfolio (Hoka, UGG) driving growth in athleisure and premium footwear. Excellent leadership and strong secular trends, with good recession resilience due to brand strength.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+EOG,5,5,5,5,5,0,A major E&P company with quality assets and efficient operations. Highly sensitive to commodity prices and faces long-term energy transition headwinds.,gemini-2.5-flash,2026-04-15T21:55:35+00:00
+EPAM,10,10,10,10,10,5,"A leading digital transformation and software engineering firm with deep expertise, strong leadership, and a talent-focused culture. Benefits from strong secular tech trends.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+EW,10,5,5,5,5,10,"Edwards Lifesciences has a strong moat and resilience. Leadership, trends, culture, and talent are moderately positive.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+EXPD,10,10,10,10,10,5,"Global logistics leader with a strong network, experienced leadership, and excellent culture. Highly cyclical with global trade, but boasts a robust balance sheet.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+FANG,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+FFIV,10,5,10,5,10,5,"F5 provides critical application security and delivery, benefiting from digital transformation and cybersecurity trends. Strong moat and talent, but enterprise spending can fluctuate.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+FIX,5,5,10,5,5,5,"Provides essential HVAC/mechanical services, benefiting from infrastructure trends. Stable leadership and skilled talent are key. Moderate recession resilience.",gemini-2.5-flash,2026-04-15T21:55:35+00:00
+FSLR,5,5,10,5,5,5,"First Solar benefits from a strong secular trend. Moat, leadership, culture, talent, and resilience are moderately positive.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+FTNT,10,5,10,5,5,5,"Fortinet has a strong moat and secular trend. Leadership, culture, talent, and resilience are moderately positive.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+GOOG,10,10,10,10,10,5,"Alphabet demonstrates strong moat, leadership, secular trends, culture, and talent. Resilience is moderate.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+GRMN,10,5,5,5,5,10,"Garmin shows strong moat and resilience. Leadership, trends, culture, and talent are moderately positive.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+HOOD,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+INCY,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+ISRG,10,10,10,5,5,10,"Intuitive Surgical excels in moat, leadership, secular trends, and resilience. Culture and talent are moderately strong.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+KIM,5,5,5,0,0,5,"Kimco Realty has some moat and resilience, but lacks clear leadership, secular trends, culture, and talent indicators.",gemini-2.5-flash-lite,2026-04-15T21:54:39+00:00
+KKR,10,10,10,10,10,10,"KKR exhibits strong moat, leadership, secular trends, culture, talent, and recession resilience. Massive cash position.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+KLAC,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+LLY,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+LRCX,10,5,10,5,5,5,Lam Research has a strong moat and secular trends in semiconductors. Leadership and other factors are moderate. Significant debt.,gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+LULU,10,10,5,10,10,5,"Lululemon shows a strong moat, leadership, culture, and talent. Secular trends are moderate. Recession resilience is average. Zero debt.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+META,10,5,5,10,10,5,"Meta demonstrates strong brand recognition and a clear mission to connect people through the metaverse.  They have a substantial cash reserve and a relatively stable revenue stream, though concerns about regulatory scrutiny persist.  Their leadership team appears well-established and focused on innovation.",gemma-3-1b-it,2026-04-15T21:22:18+00:00
+MNST,10,5,5,10,5,5,"Monster Beverage demonstrates a strong moat through brand loyalty and a diversified product portfolio.  Leadership is evident in a focused strategy and a commitment to innovation.  The company exhibits resilience in the face of economic uncertainty, with healthy cash reserves.  A positive culture fosters employee engagement and product development.",gemma-3-1b-it,2026-04-15T19:49:37+00:00
+MPWR,5,5,10,5,5,5,"Monolithic Power Systems benefits from strong secular trends in power. Moat, leadership, culture, talent, and resilience are moderate. Zero debt.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+MSFT,10,10,10,10,10,10,"Microsoft demonstrates exceptional moat, leadership, secular trends, culture, talent, and recession resilience. Massive scale and strong financials.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+NDAQ,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+NEE,5,,,,,,,gemma-3-1b-it,2026-04-15T22:26:37+00:00
+NEM,10,,,,,,,gemma-3-1b-it,2026-04-15T23:40:34+00:00
+NFLX,5,,,,,,,gemma-3-1b-it,2026-04-15T23:22:05+00:00
+NI,5,,,,,,,gemma-3-1b-it,2026-04-15T22:26:37+00:00
+NKE,5,,,,,,,gemma-3-1b-it,2026-04-15T22:26:37+00:00
+NOW,10,10,10,10,10,5,"ServiceNow excels in moat, leadership, secular trends, culture, and talent. Recession resilience is average. Strong cash reserves.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+NSC,5,,,,,,,gemma-3-1b-it,2026-04-15T22:26:37+00:00
+NVDA,10,5,5,10,10,5,"NVIDIA boasts a strong moat through its dominant chip architecture and established customer base.  Strong leadership and a clear mission contribute to a resilient business model, though potential recession risks exist.  The company’s talent pool is high, and its technological innovation is key.",gemma-3-1b-it,2026-04-15T19:48:12+00:00
+NVR,10,10,5,5,5,5,NVR exhibits a strong moat and leadership. Secular trends are moderate. Recession resilience is average. Good cash position relative to debt.,gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+NXPI,10,,,,,,,gemma-3-1b-it,2026-04-15T22:26:37+00:00
+O,5,,,,,,,gemma-3-1b-it,2026-04-15T22:26:37+00:00
+ODFL,10,10,5,5,5,10,"Old Dominion Freight Line shows a strong moat, leadership, and recession resilience. Secular trends are moderate. Financially sound with low debt.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+ON,5,,,,,,,gemma-3-1b-it,2026-04-15T22:26:37+00:00
+ORCL,5,,,,,,,gemma-3-1b-it,2026-04-15T22:42:31+00:00
+PANW,10,10,10,5,5,5,Dominant in cybersecurity with strong secular growth. Moderate resilience due to enterprise spending.,gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+PAYC,10,10,5,5,10,5,"Paycom demonstrates a strong moat through its robust technology and customer relationships.  Leadership is evident in a clear mission and a focus on employee growth.  The company exhibits resilience against economic downturns, with healthy cash reserves.  A positive culture fosters talent and drives innovation.",gemma-3-1b-it,2026-04-15T19:46:48+00:00
+PAYX,10,10,5,10,10,10,"Paychex demonstrates strong moat, leadership, culture, talent, and recession resilience. Secular trends are moderate. Solid financials.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+PLD,10,10,10,5,5,10,"Leading industrial REIT with strong secular tailwinds. Excellent moat, leadership, and resilience.",gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+PLTR,5,5,10,5,5,5,"Palantir has strong secular trends in AI and data analytics, but faces competition and has a high P/E. Debt is zero, cash is strong.",gemini-2.5-flash-lite,2026-04-15T21:55:00+00:00
+PM,10,10,0,5,5,10,"Strong moat and resilience, but faces secular headwinds in its industry. High debt.",gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+PSA,10,10,5,5,5,10,"Strong moat and resilience in self-storage. Good leadership, but secular growth may be moderate.",gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+PTC,5,5,10,5,5,5,"Strong secular trend in its software niche. Moderate scores elsewhere, with higher PE.",gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+PYPL,10,10,10,5,5,5,Leader in digital payments with strong secular growth. Moderate resilience due to consumer spending sensitivity.,gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+QCOM,10,10,10,5,5,10,Dominant in its niche with strong secular tailwinds. Good financial health and resilience.,gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+REG,5,5,5,5,5,5,"Real estate sector has some resilience, but cash is missing. Moderate scores across the board.",gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+REGN,10,10,10,10,10,10,"Regeneron boasts a wide moat from patented drugs and R&D. Strong founding leadership drives a scientific, patient-focused culture. It benefits from secular healthcare trends, attracting top talent. Essential medicines and a robust balance sheet ensure high recession resilience.",gemini-2.5-flash,2026-04-15T06:26:38+00:00
+RL,5,5,5,5,5,5,"Moderate scores across all metrics. Fashion sector can be cyclical, impacting resilience.",gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+RMD,10,10,10,5,5,10,"Strong moat, leadership, and secular trends in healthcare. Moderate culture and talent. High recession resilience.",gemini-2.5-flash-lite,2026-04-15T22:01:52+00:00
+ROP,10,10,5,5,5,5,"Roper Technologies boasts a strong moat from its niche market leaders and exceptional capital allocation leadership. While diversified, its recession resilience is moderate, and its decentralized culture is performance-driven.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+ROST,10,5,5,5,5,10,"Ross Stores shows a strong moat and resilience, with moderate scores in leadership, trends, culture, and talent.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+SBAC,10,5,10,5,5,10,"SBA Communications has an exceptional moat in essential wireless infrastructure, benefiting from massive mobile data trends. Long-term contracts provide strong recession resilience, though leadership and culture are standard.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+SNA,10,5,5,10,5,10,"Snap-on demonstrates strong moat, culture, and resilience, with good leadership and talent, and moderate secular trends.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+SNPS,10,10,10,5,10,10,"Synopsys excels in moat, leadership, secular trends, talent, and resilience, with a decent culture and mission.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+SPG,5,5,0,5,5,0,"Simon Property Group faces significant e-commerce headwinds, making it highly vulnerable to recessions. Its premier locations offer some moat, but it's challenged, and leadership navigates a difficult environment.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+SPGI,10,10,10,5,10,5,"S&P Global has an exceptional moat from dominant credit ratings and indices, benefiting from strong data trends. It attracts top talent, though recession resilience is moderate due to market activity.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+STLD,10,5,5,5,5,10,"Steel Dynamics has a strong moat and resilience, with moderate scores in leadership, trends, culture, and talent.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+STZ,10,5,5,5,5,10,"Constellation Brands has a strong brand moat and recession-resilient consumer staples. Experienced leadership and moderate secular trends are present, but culture and talent are standard for the industry.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+SWKS,5,5,10,5,5,0,"Skyworks benefits from strong secular trends in 5G and IoT. However, its moat is challenged by intense competition, and its cyclical nature makes it vulnerable during recessions.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+TDG,10,10,5,5,5,5,"TransDigm has a deep moat from proprietary aerospace parts and strong M&A leadership. Benefiting from steady air travel, its cyclical nature and less emphasized culture temper some scores.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+TER,5,5,5,0,5,5,"Teradyne has moderate moat, leadership, trends, and talent, but lacks strong culture and mission. Resilience is average.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+TJX,10,5,5,5,5,10,"TJX has a strong moat from its off-price model and efficient supply chain, making it highly recession-resilient. Leadership is experienced, though secular trends are mixed with e-commerce competition.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+TPL,10,10,5,5,5,10,"TPL boasts an exceptional asset-based moat with vast Permian land. Its zero debt and strong cash provide outstanding financial resilience. While tied to energy cycles, its unique royalty model and prudent leadership ensure long-term value stewardship.",gemini-2.5-flash,2026-04-15T06:27:01+00:00
+TROW,5,10,0,10,10,5,"T. Rowe Price benefits from strong leadership, culture, and talent, backed by a solid balance sheet. However, its active asset management model faces significant secular headwinds from the shift towards passive investing, challenging its long-term growth despite a decent brand moat.",gemini-2.5-flash,2026-04-15T06:26:51+00:00
+TSLA,5,5,10,10,10,0,"Tesla leads massive secular trends with a strong mission and top talent. However, its moat faces increasing competition, leadership is volatile, and it's highly vulnerable to recessions.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+TTD,10,10,10,5,10,5,"The Trade Desk shows strong moat, leadership, secular trends, and talent, with moderate culture and resilience.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+TXN,10,10,10,10,10,5,"TXN boasts a strong moat in essential analog and embedded chips, supported by consistent leadership and a robust balance sheet. It benefits from broad secular trends across diverse industries, though its cyclical nature warrants consideration. Its culture fosters long-term quality and talent.",gemini-2.5-flash,2026-04-15T06:26:45+00:00
+TYL,10,5,5,5,5,10,"Tyler benefits from high government switching costs and recession-resilient contracts. Its specialized software niche provides a strong moat, though growth trends are steady rather than explosive.",gemini-2.5-flash,2026-04-15T22:01:43+00:00
+UNP,10,5,5,5,5,5,"Strong infrastructure moat in a duopoly. Essential service, but freight volumes are cyclical. Focus on efficiency and safety. Stable management.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+URI,5,5,0,5,5,0,"Industry leader in equipment rental with scale advantages. Highly cyclical, tied to construction and industrial spending. Good operational focus.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+V,10,10,10,10,10,5,"Dominant global payments network with exceptional moat, leadership, and strong secular tailwinds. High talent and culture. Transaction volumes can dip.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+VICI,10,5,5,5,5,5,"Strong real estate moat with long-term leases. Income is stable, but tenant health and gaming industry cycles are factors. Experienced leadership.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+VRSK,10,5,10,5,10,5,"Strong data moat and high switching costs. Benefits from secular demand for data analytics and risk management. Good talent. Less cyclical, but not immune.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+VRSN,10,5,5,5,5,10,"Unparalleled moat as a critical internet infrastructure provider. Highly recession-resilient with stable leadership. Essential service, mature growth.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+VRTX,10,10,10,10,10,10,"Vertex boasts an exceptional qualitative profile. It holds a strong patent-protected moat in CF, driven by visionary leadership and a clear mission to innovate for serious diseases. Excellent talent and strong secular healthcare trends underpin its growth. Zero debt and critical therapies ensure robust recession resilience.",gemini-2.5-flash,2026-04-15T06:26:29+00:00
+WAT,10,5,10,5,10,5,Strong moat from specialized instruments and high R&D. Benefits from secular growth in life sciences. High talent quality. Lab spending can be discretionary.,gemini-2.5-flash,2026-04-15T21:56:37+00:00
+WDAY,10,10,10,10,10,5,"Strong cloud software moat, excellent leadership, and powerful secular trends. High talent quality and culture. Enterprise software can be cyclical.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+WEC,10,5,5,5,5,10,Regulated monopoly with strong recession resilience and essential services. Stable but slow-growth utility. Consistent culture and talent.,gemini-2.5-flash,2026-04-15T21:56:37+00:00
+WELL,10,,,,,,,gemma-3-1b-it,2026-04-15T23:15:34+00:00
+WMB,10,5,5,5,5,10,"Strong infrastructure moat, essential service, and recession-resilient. Faces long-term energy transition questions. Stable leadership and talent.",gemini-2.5-flash,2026-04-15T21:56:37+00:00
+WSM,5,5,0,5,5,5,"Williams Sonoma has moderate moat, leadership, culture, and talent, but weak secular trends and resilience.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+WST,10,5,5,5,5,10,"West Pharmaceutical Services demonstrates strong moat and resilience, with moderate scores in leadership, trends, culture, and talent.",gemini-2.5-flash-lite,2026-04-15T21:54:47+00:00
+YUM,10,5,5,5,5,5,Global quick-service restaurant giant with iconic brands and a vast franchise network. Benefits from global growth and convenience trends. Relatively resilient in downturns as consumers seek value.,gemini-2.5-flash,2026-04-15T21:56:07+00:00
+ZTS,10,10,10,10,10,10,"Global leader in animal health, benefiting from pet humanization and advanced veterinary care trends. Strong R&D and veterinarian relationships. Highly resilient to economic downturns.",gemini-2.5-flash,2026-04-15T21:56:07+00:00

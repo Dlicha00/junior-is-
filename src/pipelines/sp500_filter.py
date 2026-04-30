@@ -7,6 +7,7 @@ import pandas as pd
 
 
 def latest_simfin_snapshot_path(data_dir: str | Path = "data/raw") -> Path:
+    # Use the newest full SimFin run when possible.
     data_path = Path(data_dir)
     matches = sorted(data_path.glob("simfin_financials_*.csv"), key=lambda p: p.stat().st_mtime)
     if not matches:
@@ -26,10 +27,12 @@ def latest_simfin_snapshot_path(data_dir: str | Path = "data/raw") -> Path:
 
 
 def _is_missing(series: pd.Series) -> pd.Series:
+    # Treat blanks like missing values too.
     return series.isna() | (series.astype(str).str.strip() == "")
 
 
 def apply_sp500_eligibility_filter(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    # Remove rows that are not safe to score.
     required_columns = [
         "ticker",
         "company_name",
@@ -46,6 +49,7 @@ def apply_sp500_eligibility_filter(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.D
     working["exclusion_reason"] = ""
 
     reason_checks: list[tuple[str, pd.Series]] = [
+        # Keep the reason so exclusions are easy to explain.
         ("missing_company_name", _is_missing(working["company_name"])),
         ("missing_revenue", working["revenue"].isna()),
         ("missing_net_income", working["net_income"].isna()),
@@ -80,6 +84,7 @@ def save_sp500_filter_outputs(
     input_path: str | Path | None = None,
     output_dir: str | Path = "data/processed",
 ) -> tuple[Path, Path]:
+    # Write both usable and excluded rows for review.
     source_path = Path(input_path) if input_path else latest_simfin_snapshot_path()
     df = pd.read_csv(source_path)
 

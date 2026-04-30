@@ -7,6 +7,7 @@ import pandas as pd
 
 
 def latest_eligible_snapshot_path(data_dir: str | Path = "data/processed") -> Path:
+    # Use the latest filtered file as the source.
     data_path = Path(data_dir)
     matches = sorted(
         data_path.glob("eligible_stocks_*.csv"),
@@ -24,6 +25,7 @@ def _to_datetime(series: pd.Series) -> pd.Series:
 
 
 def build_metrics_master(input_path: str | Path | None = None) -> pd.DataFrame:
+    # Build the clean table used by later scoring work.
     source_path = Path(input_path) if input_path else latest_eligible_snapshot_path()
     df = pd.read_csv(source_path)
 
@@ -60,6 +62,7 @@ def build_metrics_master(input_path: str | Path | None = None) -> pd.DataFrame:
     out = df[keep_cols].copy()
 
     str_cols = ["ticker", "company_name", "source", "fiscal_period"]
+    # Normalize types so CSV snapshots stay consistent.
     for col in str_cols:
         out[col] = out[col].astype("string")
 
@@ -94,6 +97,7 @@ def save_metrics_master(
     input_path: str | Path | None = None,
     output_dir: str | Path = "data/processed",
 ) -> Path:
+    # Save the processed metrics snapshot.
     df = build_metrics_master(input_path=input_path)
     out_dir = Path(output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
